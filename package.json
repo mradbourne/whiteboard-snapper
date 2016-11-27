@@ -1,0 +1,24 @@
+{
+  "name": "whiteboard-wiper",
+  "version": "0.1.0",
+  "description": "An integration between a Raspberry Pi camera and a Slack bot, saving awesome information from ruthless whiteboard wipers.",
+  "main": "whiteboard-wiper.js",
+  "scripts": {
+    "start": "node whiteboard-nanny.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mradbourne/whiteboard-wiper.git"
+  },
+  "author": "Matt Radbourne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mradbourne/whiteboard-wiper/issues"
+  },
+  "homepage": "https://github.com/mradbourne/whiteboard-wiper#readme",
+  "dependencies": {
+    "slack-node": "^0.1.8",
+    "terminal-kit": "^0.25.2"
+  }
+}
