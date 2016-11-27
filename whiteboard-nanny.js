@@ -1,19 +1,18 @@
 var fs = require('fs');
-var path = require('path')
-
 var term = require( 'terminal-kit' ).terminal;
 var Slack = require('slack-node');
-
 var config = require('./config');
 
 slack = new Slack(config.slackApiToken);
+
 term.grabInput();
 
 term.on( 'key' , function( name , matches , data ) {
   if ( name === 'ENTER' ) {
-    slack.api('chat.postMessage', {
-      text:'hello from nodejs',
-      channel:'#general'
+    slack.api('files.upload', {
+      filename: 'This whiteboard is being wiped',
+      file: fs.createReadStream('./capture.jpg'),
+      channels: '#general'
     }, function(err, response){
       console.log(response);
     });
