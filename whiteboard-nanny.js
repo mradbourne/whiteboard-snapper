@@ -16,11 +16,13 @@ var camera = new RaspiCam({
 
 slack = new Slack(config.slackApiToken);
 
+leds.status.blink();
+
 term.grabInput();
 
 term.on( 'key' , function( name , matches , data ) {
   if ( name === 'ENTER' ) {
-	  leds.status.turnOn();
+	  leds.status.turnOff();
 	  camera.start();
 	  camera.on('read', function(err, timestamp, filename) {
 		  if (filename === 'capture.jpg') {
@@ -31,7 +33,7 @@ term.on( 'key' , function( name , matches , data ) {
 			initial_comment: config.whiteboardName + ' has just been cleared',
 			channels: '#general'
 		}, function(err, response){
-			leds.status.reset();
+			leds.status.blink();
 		});
 		}
 	});
