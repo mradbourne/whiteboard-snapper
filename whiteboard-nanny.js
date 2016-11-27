@@ -3,6 +3,8 @@ var term = require( 'terminal-kit' ).terminal;
 var Slack = require('slack-node');
 var config = require('./config');
 var RaspiCam = require("raspicam");
+var RpiLeds = require('rpi-leds');
+var leds = new RpiLeds();
 
 var camera = new RaspiCam({
 	mode: 'photo',
@@ -18,6 +20,7 @@ term.grabInput();
 
 term.on( 'key' , function( name , matches , data ) {
   if ( name === 'ENTER' ) {
+	  leds.status.turnOn();
 	  camera.start();
 	  camera.on('read', function(err, timestamp, filename) {
 		  if (filename === 'capture.jpg') {
@@ -28,12 +31,13 @@ term.on( 'key' , function( name , matches , data ) {
 			initial_comment: config.whiteboardName + ' has just been cleared',
 			channels: '#general'
 		}, function(err, response){
-			console.log(response);
+			leds.status.reset();
 		});
 		}
 	});
   } else if ( name === 'CTRL_C' ) {
     term.grabInput( false ) ;
+    leds.status.reset();
     setTimeout( function() { process.exit() } , 100 ) ;
   }
 });
