@@ -10,8 +10,10 @@ term.grabInput();
 term.on( 'key' , function( name , matches , data ) {
   if ( name === 'ENTER' ) {
     slack.api('files.upload', {
-      filename: 'This whiteboard is being wiped',
       file: fs.createReadStream('./capture.jpg'),
+      filename: config.whiteboardName,
+      title: config.whiteboardName + ' contents',
+      initial_comment: config.whiteboardName + ' has just been cleared',
       channels: '#general'
     }, function(err, response){
       console.log(response);
