@@ -1,5 +1,5 @@
 var fs = require('fs');
-var term = require( 'terminal-kit' ).terminal;
+var term = require('terminal-kit').terminal;
 var Slack = require('slack-node');
 var config = require('./config');
 var RaspiCam = require("raspicam");
@@ -13,11 +13,11 @@ var FlicScanner = fliclib.FlicScanner;
 var flic = new FlicClient("localhost", 5551);
 
 var camera = new RaspiCam({
-	mode: 'photo',
-	output: './capture.jpg',
-	width: 1620,
-	height: 1232,
-	quality: 80
+  mode: 'photo',
+  output: './capture.jpg',
+  width: 1620,
+  height: 1232,
+  quality: 80
 });
 
 slack = new Slack(config.slackApiToken);
@@ -45,7 +45,7 @@ term.on( 'key' , function( name , matches , data ) {
   } else if ( name === 'CTRL_C' ) {
     term.grabInput( false ) ;
     leds.status.reset();
-    setTimeout( function() { process.exit() } , 100 ) ;
+    setTimeout(function() { process.exit() }, 100);
   }
 });
 
