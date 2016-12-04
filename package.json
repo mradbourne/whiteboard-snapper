@@ -4,8 +4,10 @@
   "description": "An integration between a Raspberry Pi camera and a Slack bot, saving awesome information from ruthless whiteboard wipers.",
   "main": "whiteboard-nanny.js",
   "scripts": {
-    "start": "node whiteboard-nanny.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "lib/flicd -f flicd.sqlite3 | node whiteboard-nanny.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "sudo setcap cap_net_admin=ep lib/flicd",
+    "connect": "lib/flicd -f flicd.sqlite3 | node lib/scanwizard.js"
   },
   "repository": {
     "type": "git",
