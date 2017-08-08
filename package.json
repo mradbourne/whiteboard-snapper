@@ -1,24 +1,22 @@
 {
-  "name": "whiteboard-nanny",
+  "name": "whiteboard-snapper",
   "version": "0.1.0",
   "description": "An integration between a Raspberry Pi camera and a Slack bot, saving awesome information from ruthless whiteboard wipers.",
-  "main": "whiteboard-nanny.js",
+  "main": "index.js",
   "scripts": {
-    "start": "lib/flicd -f flicd.sqlite3 | node whiteboard-nanny.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "setup": "sudo setcap cap_net_admin=ep lib/flicd",
-    "connect": "lib/flicd -f flicd.sqlite3 | node lib/scanwizard.js"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/mradbourne/whiteboard-nanny.git"
+    "url": "git+ssh://git@github.com/mradbourne/whiteboard-snapper.git"
   },
   "author": "Matt Radbourne",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mradbourne/whiteboard-nanny/issues"
+    "url": "https://github.com/mradbourne/whiteboard-snapper/issues"
   },
-  "homepage": "https://github.com/mradbourne/whiteboard-nanny#readme",
+  "homepage": "https://github.com/mradbourne/whiteboard-snapper#readme",
   "dependencies": {
     "raspicam": "^0.2.13",
     "rpi-leds": "0.0.3",

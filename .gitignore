@@ -47,6 +47,5 @@ jspm_packages
 .yarn-integrity
 
 # Private whiteboard files
+captures/
 config.js
-capture.jpg
-flicd.sqlite3
