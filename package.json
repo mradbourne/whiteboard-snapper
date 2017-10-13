@@ -4,7 +4,9 @@
   "description": "An integration between a Raspberry Pi camera and a Slack bot, saving awesome information from ruthless whiteboard wipers.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "concurrently --raw \"npm run alexa\" \"npm run capture\"",
+    "alexa": "node src/alexa_skill/server.js",
+    "capture": "node src/capture_tool/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/mradbourne/whiteboard-snapper#readme",
   "dependencies": {
+    "concurrently": "^3.5.0",
     "raspicam": "^0.2.13",
     "rpi-leds": "0.0.3",
     "slack-node": "^0.1.8",
