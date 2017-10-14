@@ -3,7 +3,7 @@ A whiteboard capture tool for Raspberry Pi written in Node.js.
 
 ## Setup
 ### Prerequisites
-* A Raspberry Pi with internet access and an official camera module
+* A Raspberry Pi with an internet connection and an official camera module
 * Node.js - Tested on v6.11.0
 * A Slack API key
 
@@ -11,4 +11,4 @@ A whiteboard capture tool for Raspberry Pi written in Node.js.
 Run `./setup.sh`.
 You will be guided through the process of configuring the Pi.
 
-Once setup has been run, the service can be restarted with `npm start`.
+Once setup has been run, the service can be started with `npm start`.
