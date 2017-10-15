@@ -1,13 +1,15 @@
 const term = require('terminal-kit').terminal
-const postToSlack = require('./slack')
+const capture = require('./capture')
+// const config = require('../config')
 
-const startCli = ({camera, slack, leds}) => {
+const init = ({camera, slack, leds}) => {
   leds.status.blink()
   term.grabInput()
 
   term.on('key', (name, matches, data) => {
     if (name === 'ENTER') {
-      postToSlack()
+      // const slackChannel = config.slackDefaultChannel
+      capture.sendToSlack({camera, slack, leds})
     } else if (name === 'CTRL_C') {
       term.grabInput(false)
       leds.status.reset()
@@ -31,4 +33,4 @@ ____________,'
   term.defaultColor('Hit ENTER to capture.\nHit CTRL-C to quit.\n\n')
 }
 
-module.exports = startCli
+module.exports = init

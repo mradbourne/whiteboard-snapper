@@ -1,21 +1,26 @@
-const RaspiCam = require('raspicam')
-const Slack = require('slack-node')
-const RpiLeds = require('rpi-leds')
+const fs = require('fs')
 const config = require('../config')
-const startCli = require('./cli')
 
-const init = () => {
-  const camera = new RaspiCam({
-    mode: 'photo',
-    output: '../../captures/capture.jpg',
-    width: 1620,
-    height: 1232,
-    quality: 80
-  })
-  const slack = new Slack(config.slackApiToken)
-  const leds = new RpiLeds()
-
-  startCli({camera, slack, leds})
+const sendToSlack = ({camera, slack, leds}) => {
+  leds.status.turnOff()
+  camera.start()
 }
 
-module.exports = init
+const success = ({slack, leds}, {timestamp}) => {
+  slack.api('files.upload', {
+    file: fs.createReadStream('./captures/capture.jpg'),
+    filename: config.whiteboardName + '_' + timestamp + '.jpg',
+    title: config.whiteboardName + ' ' + timestamp,
+    initial_comment: config.whiteboardName + ' has just been cleared',
+    channels: '#general'
+  }, (err, response) => {
+    console.log('Capture finished!')
+    fs.unlinkSync('./captures/capture.jpg')
+    leds.status.blink()
+  })
+}
+
+module.exports = {
+  sendToSlack,
+  success
+}

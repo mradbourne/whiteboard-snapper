@@ -1,7 +1,9 @@
 const express = require('express')
 const alexa = require('alexa-app')
+const config = require('../config')
+const capture = require('./capture')
 
-const init = () => {
+const init = ({camera, slack, leds}) => {
   const port = process.env.port || 8080
   const urlPath = 'snapperApi'
   const app = express()
@@ -25,15 +27,19 @@ const init = () => {
   // from here on you can setup any other express routes or middlewares as normal
 
   alexaApp.intent('RepeatIntent', {
-    'slots': {
-      'VALUE': 'AMAZON.NUMBER'
-    },
+    // 'slots': {
+    //   'VALUE': 'AMAZON.NUMBER'
+    // },
     'utterances': [
-      'repeat {-|VALUE}'
+      // 'snap {-|VALUE}'
+      'snap this whiteboard'
     ]
   }, (req, res) => {
-    const value = req.slot('VALUE')
-    res.say(`You said ${value}.`)
+    // const value = req.slot('VALUE')
+    // res.say(`You said ${value}.`)
+    const slackChannel = config.slackDefaultChannel
+    res.say(`I am snapping ${config.whiteboardName} and posting to the ${slackChannel} channel on Slack.`)
+    capture.sendToSlack({camera, slack, leds})
   })
 
   // Log skill info for Amazon Developer Console

@@ -4,7 +4,7 @@
   "description": "An integration between a Raspberry Pi camera and a Slack bot, saving awesome information from ruthless whiteboard wipers.",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server",
+    "start": "node src/init",
     "ngrok": "ngrok http 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
