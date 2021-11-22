@@ -25,6 +25,6 @@
     "raspicam": "^0.2.13",
     "rpi-leds": "0.0.3",
     "slack-node": "^0.1.8",
-    "terminal-kit": "^0.25.2"
+    "terminal-kit": "^2.1.8"
   }
 }
